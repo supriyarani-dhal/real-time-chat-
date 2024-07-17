@@ -1,0 +1,16 @@
+git rm -r --cached node_modules
+git rm --cached .env
+
+
+# Dependency directories
+/node_modules
+node_modules/
+/frontend/node_modules/
+
+
+# dotenv environment variables file
+.env
+.env.test
+.env.production
+
+
