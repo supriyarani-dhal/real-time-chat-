@@ -36,12 +36,35 @@ const io = new Server(server, {
 //handle incoming connections
 io.on("connection", (socket) => {
   console.log("connected");
+
   //it creates a room (setup) for the user to enter that room
-  // socket.on("setup", (userData) => {
-  //   socket.join(userData._id);
-  //   console.log(userData._id);
-  //   socket.emit("connected");
-  // });
+  socket.on("setup", (userData) => {
+    socket.join(userData._id);
+    socket.emit("connected");
+  });
+
+  //it's for joining of the user to that room(or chat)
+  socket.on("join chat", (room) => {
+    socket.join(room);
+    console.log("the user joined the room: " + room);
+  });
+
+  //for typing functionality inside the room(a chat)
+  socket.on("typing", (room) => socket.in(room).emit("typing"));
+  socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
+
+  //
+  socket.on("new message", (newMesageReceived) => {
+    var chat = newMesageReceived.chat;
+
+    if (!chat.users) return console.log("chat.users are not defined");
+
+    chat.users.forEach((user) => {
+      if (user._id === newMesageReceived.sender._id) return;
+
+      socket.in(user._id).emit("message received", newMesageReceived);
+    });
+  });
 });
 
 dotenv.config();
@@ -58,7 +81,7 @@ app.use("/api/message", messageRouter);
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(
+server.listen(
   process.env.PORT || 5000,
   console.log(
     `App is listening on http://localhost:${process.env.PORT}`.yellow.bold
