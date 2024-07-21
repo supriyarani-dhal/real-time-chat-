@@ -28,6 +28,8 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import ChatLoading from "../common/ChatLoading";
 import UserListItem from "../layouts/UserListItem";
+import { getSender } from "../../config/ChatLogics";
+import NotificationBadge, { Effect } from "react-notification-badge";
 
 const SideDrawer = () => {
   const [search, setSearch] = useState("");
@@ -40,7 +42,15 @@ const SideDrawer = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { user, chats, setChats, selectedChat, setSelectedChat } = ChatState();
+  const {
+    user,
+    chats,
+    setChats,
+    selectedChat,
+    setSelectedChat,
+    notification,
+    setNotification,
+  } = ChatState();
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
     history.push("/");
@@ -148,9 +158,29 @@ const SideDrawer = () => {
         </Text>
         <div>
           <Menu>
-            <MenuButton>
+            <MenuButton p={1}>
+              <NotificationBadge
+                count={notification.length}
+                effect={Effect.SCALE}
+              />
               <BellIcon fontSize={"2xl"} m={1} />
             </MenuButton>
+            <MenuList>
+              {!notification.length && "No new messages"}
+              {notification.map((notif) => (
+                <MenuItem
+                  key={notif._id}
+                  onClick={() => {
+                    setSelectedChat(notif.chat);
+                    setNotification(notification.filter((n) => n !== notif));
+                  }}
+                >
+                  {notif.chat.isGroupChat
+                    ? `New Message in ${notif.chat.chatName}`
+                    : `New Message from ${getSender(user, notif.chat.users)}`}
+                </MenuItem>
+              ))}
+            </MenuList>
           </Menu>
           <Menu>
             <MenuButton

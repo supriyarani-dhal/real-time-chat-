@@ -24,7 +24,8 @@ var socket, selectedChatCompare;
 
 // eslint-disable-next-line react/prop-types
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
-  const { user, selectedChat, setSelectedChat } = ChatState();
+  const { user, selectedChat, setSelectedChat, notification, setNotification } =
+    ChatState();
 
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState();
@@ -98,6 +99,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         selectedChatCompare._id !== newMessageReceived.chat._id
       ) {
         //give notifications
+        if (!notification.includes(newMessageReceived)) {
+          setNotification([newMessageReceived, ...notification]);
+          setFetchAgain(!fetchAgain);
+        }
       } else {
         //append the new message to the selected chat
         setMessages([...messages, newMessageReceived]);
@@ -234,7 +239,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   <Lottie
                     options={defaultOptions}
                     width={70}
-                    style={{ marginBottom: 15, marginLeft0 }}
+                    style={{ marginBottom: 15, marginLeft: 0 }}
                   />
                 </div>
               ) : (
