@@ -65,6 +65,11 @@ io.on("connection", (socket) => {
       socket.in(user._id).emit("message received", newMesageReceived);
     });
   });
+
+  socket.off("setup", () => {
+    console.log("USER DISCONNECTED");
+    socket.leave(userData._id);
+  });
 });
 
 dotenv.config();
