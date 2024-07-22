@@ -9,6 +9,7 @@ import { errorHandler, notFound } from "./middlewares/error.middleware.js";
 import { Server } from "socket.io";
 import http from "http";
 import cors from "cors";
+import path from "path";
 
 const app = express();
 
@@ -66,6 +67,7 @@ io.on("connection", (socket) => {
     });
   });
 
+  //to disconnect the socket
   socket.off("setup", () => {
     console.log("USER DISCONNECTED");
     socket.leave(userData._id);
