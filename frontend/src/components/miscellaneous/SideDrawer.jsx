@@ -46,7 +46,6 @@ const SideDrawer = () => {
     user,
     chats,
     setChats,
-    selectedChat,
     setSelectedChat,
     notification,
     setNotification,
