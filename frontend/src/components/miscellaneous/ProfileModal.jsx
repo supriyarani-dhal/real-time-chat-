@@ -30,7 +30,14 @@ const ProfileModal = ({ user, children }) => {
       )}
       <Modal isOpen={isOpen} onClose={onClose} size={"lg"} isCentered>
         <ModalOverlay />
-        <ModalContent h={"410px"} bg={"#90CDF4"}>
+        <ModalContent
+          h={"410px"}
+          borderColor={"rgba(255, 255, 255, 0.125)"}
+          boxShadow={"md"}
+          backgroundColor="rgba(155, 155, 155, 0.28)"
+          backdropFilter={"blur(20px) saturate(200%)"}
+          textColor={"#CBD5E0"}
+        >
           <ModalHeader
             fontSize={"40px"}
             fontFamily={"work sans"}
@@ -62,10 +69,9 @@ const ProfileModal = ({ user, children }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="purple" mr={3} onClick={onClose}>
+            <Button colorScheme="green" mr={3} onClick={onClose}>
               Close
             </Button>
-            {/* <Button variant="ghost">Secondary Action</Button> */}
           </ModalFooter>
         </ModalContent>
       </Modal>

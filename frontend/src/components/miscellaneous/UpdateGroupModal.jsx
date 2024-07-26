@@ -15,6 +15,7 @@ import {
   FormControl,
   Input,
   Spinner,
+  Divider,
 } from "@chakra-ui/react";
 import { ChatState } from "../../context/ChatProvider";
 import { useState } from "react";
@@ -218,7 +219,13 @@ const UpdateGroupModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
-        <ModalContent bg={"#90CDF4"}>
+        <ModalContent
+          borderColor={"rgba(255, 255, 255, 0.125)"}
+          boxShadow={"md"}
+          backgroundColor="rgba(155, 155, 155, 0.28)"
+          backdropFilter={"blur(20px) saturate(200%)"}
+          textColor={"#CBD5E0"}
+        >
           <ModalHeader
             fontFamily={"work sans"}
             fontSize={"35px"}
@@ -227,6 +234,7 @@ const UpdateGroupModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
           >
             {selectedChat.chatName}
           </ModalHeader>
+          <Divider />
           <ModalCloseButton />
           <ModalBody>
             <Box w="100%" display={"flex"} flexWrap={"wrap"} pb={3}>

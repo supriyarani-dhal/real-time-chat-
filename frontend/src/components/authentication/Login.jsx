@@ -77,6 +77,8 @@ const Login = () => {
       <FormControl id="email" isRequired>
         <FormLabel>Email</FormLabel>
         <Input
+          focusBorderColor="rgba(255, 255, 255, 0.125)"
+          bg={"RGBA(0, 0, 0, 0.36)"}
           placeholder="Enter your Email"
           value={email}
           onChange={(e) => {
@@ -88,6 +90,8 @@ const Login = () => {
         <FormLabel>Password</FormLabel>
         <InputGroup>
           <Input
+            focusBorderColor="rgba(255, 255, 255, 0.125)"
+            bg={"RGBA(0, 0, 0, 0.36)"}
             type={show ? "text" : "password"}
             placeholder="Enter your Password"
             value={password}
@@ -104,7 +108,7 @@ const Login = () => {
       </FormControl>
 
       <Button
-        colorScheme="blue"
+        colorScheme="blackAlpha"
         w={"100%"}
         style={{ marginTop: 15 }}
         onClick={submitHandler}
@@ -113,7 +117,7 @@ const Login = () => {
         Login
       </Button>
       <Button
-        colorScheme="purple"
+        colorScheme="red"
         w={"100%"}
         onClick={() => {
           setEmail("guest@example.com");

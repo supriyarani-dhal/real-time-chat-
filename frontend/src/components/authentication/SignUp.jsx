@@ -137,6 +137,8 @@ const SignUp = () => {
         <FormLabel>Name</FormLabel>
         <Input
           placeholder="Enter your Name"
+          focusBorderColor="rgba(255, 255, 255, 0.125)"
+          bg={"RGBA(0, 0, 0, 0.48)"}
           onChange={(e) => {
             setName(e.target.value);
           }}
@@ -146,6 +148,8 @@ const SignUp = () => {
         <FormLabel>Email</FormLabel>
         <Input
           placeholder="Enter your Email"
+          focusBorderColor="rgba(255, 255, 255, 0.125)"
+          bg={"RGBA(0, 0, 0, 0.48)"}
           onChange={(e) => {
             setEmail(e.target.value);
           }}
@@ -157,6 +161,8 @@ const SignUp = () => {
           <Input
             type={show ? "text" : "password"}
             placeholder="Enter your Password"
+            focusBorderColor="rgba(255, 255, 255, 0.125)"
+            bg={"RGBA(0, 0, 0, 0.48)"}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
@@ -174,6 +180,8 @@ const SignUp = () => {
           <Input
             type={show ? "text" : "password"}
             placeholder="Confirm your Password"
+            focusBorderColor="rgba(255, 255, 255, 0.125)"
+            bg={"RGBA(0, 0, 0, 0.48)"}
             onChange={(e) => {
               setConfirmPassword(e.target.value);
             }}
@@ -188,6 +196,7 @@ const SignUp = () => {
       <FormControl id="pic" isRequired>
         <FormLabel>Upload your Picture</FormLabel>
         <Input
+          bg={"RGBA(0, 0, 0, 0.48)"}
           type="file"
           p={1.5}
           accept="image/*"
@@ -197,7 +206,7 @@ const SignUp = () => {
         />
       </FormControl>
       <Button
-        colorScheme="blue"
+        colorScheme="blackAlpha"
         w={"100%"}
         style={{ marginTop: 15 }}
         onClick={submitHandler}

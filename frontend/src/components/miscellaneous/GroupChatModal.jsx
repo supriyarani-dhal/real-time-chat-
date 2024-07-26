@@ -13,6 +13,7 @@ import {
   Input,
   Spinner,
   Box,
+  Divider,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ChatState } from "../../context/ChatProvider";
@@ -137,7 +138,13 @@ const GroupChatModal = ({ children }) => {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent bg="#90CDF4">
+        <ModalContent
+          borderColor={"rgba(255, 255, 255, 0.125)"}
+          boxShadow={"md"}
+          backgroundColor="rgba(155, 155, 155, 0.28)"
+          backdropFilter={"blur(20px) saturate(200%)"}
+          textColor={"#CBD5E0"}
+        >
           <ModalHeader
             fontFamily={"work sans"}
             fontSize={"35px"}
@@ -146,6 +153,7 @@ const GroupChatModal = ({ children }) => {
           >
             Create Group Chat
           </ModalHeader>
+          <Divider />
           <ModalCloseButton />
           <ModalBody display={"flex"} flexDir={"column"} alignItems={"center"}>
             <FormControl>
@@ -153,6 +161,7 @@ const GroupChatModal = ({ children }) => {
                 placeholder="Chat name"
                 mb={3}
                 onChange={(e) => setGroupChatName(e.target.value)}
+                bg={"rgba(0,0,0,0.36)"}
               />
             </FormControl>
             <FormControl>
@@ -160,6 +169,7 @@ const GroupChatModal = ({ children }) => {
                 placeholder="Add users eg: john , ayush , sheikh"
                 mb={1}
                 onChange={(e) => handleSearch(e.target.value)}
+                bg={"rgba(0,0,0,0.36)"}
               />
             </FormControl>
             <Box w={"100%"} display={"flex"} flexWrap={"wrap"}>
@@ -187,7 +197,7 @@ const GroupChatModal = ({ children }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="purple" onClick={handleSubmit}>
+            <Button colorScheme="whiteAlpha" onClick={handleSubmit}>
               Create Group
             </Button>
           </ModalFooter>

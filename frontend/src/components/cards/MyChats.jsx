@@ -1,6 +1,14 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { ChatState } from "../../context/ChatProvider";
-import { Box, Button, Stack, Text, useToast } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  Stack,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ChatLoading from "../common/ChatLoading";
@@ -46,10 +54,14 @@ const MyChats = ({ fetchAgain }) => {
       flexDir={"column"}
       alignItems={"center"}
       p={3}
-      bg={"#4bacfcbd"}
       w={{ base: "100%", md: "31%" }}
+      textColor={"#CBD5E0"}
       borderRadius={"lg"}
       borderWidth={"1px"}
+      borderColor={"rgba(255, 255, 255, 0.125)"}
+      boxShadow={"md"}
+      backgroundColor="rgba(74, 144, 226, 0.4)"
+      backdropFilter={"blur(25px) saturate(200%)"}
     >
       <Box
         pb={3}
@@ -67,13 +79,16 @@ const MyChats = ({ fetchAgain }) => {
             display={"flex"}
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
             rightIcon={<AddIcon />}
-            bg={"#90CDF4"}
-            _hover={{ bg: "blue.300" }}
+            bg={"RGBA(0, 0, 0, 0.36)"}
+            _hover={{ bg: "RGBA(0, 0, 0, 0.48)" }}
+            textColor={"#CBD5E0"}
+            borderRadius={"20px"}
           >
             New Group Chat
           </Button>
         </GroupChatModal>
       </Box>
+      <Divider />
       <Box
         display={"flex"}
         flexDir={"column"}
@@ -82,27 +97,32 @@ const MyChats = ({ fetchAgain }) => {
         h={"100%"}
         borderRadius={"lg"}
         overflowY={"hidden"}
-        bg={"#63B3ED"}
       >
         {chats ? (
           <Stack overflowY={"scroll"}>
             {chats.map((chat) => (
-              <Box
-                onClick={() => setSelectedChat(chat)}
-                cursor={"pointer"}
-                bg={selectedChat === chat ? "#7936c9d6" : "#00A3C4"}
-                color={selectedChat === chat ? "white" : "black"}
-                key={chat._id}
-                px={3}
-                py={2}
-                borderRadius={"lg"}
-              >
-                <Text>
-                  {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
-                    : chat.chatName}
-                </Text>
-              </Box>
+              <>
+                <Box
+                  onClick={() => setSelectedChat(chat)}
+                  cursor={"pointer"}
+                  bg={selectedChat === chat && "#0BC5EA"}
+                  key={chat._id}
+                  px={3}
+                  py={2}
+                  borderRadius={"lg"}
+                  _hover={{
+                    bg: "#0BC5EA",
+                  }}
+                  display={"flex"}
+                >
+                  <Text>
+                    {!chat.isGroupChat
+                      ? getSender(loggedUser, chat.users)
+                      : chat.chatName}
+                  </Text>
+                </Box>
+                <Divider />
+              </>
             ))}
           </Stack>
         ) : (

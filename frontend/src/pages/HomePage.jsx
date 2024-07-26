@@ -29,36 +29,42 @@ const HomePage = () => {
         d="flex"
         justifyContent="center"
         p={1.5}
-        bg={"#4bacfc7a"}
         w="100%"
         m="40px 0 15px 0"
-        borderRadius="lg"
+        borderRadius="12px"
         borderWidth="1px"
+        borderColor={"rgba(255, 255, 255, 0.125)"}
+        boxShadow={"md"}
+        backgroundColor="rgba(74, 144, 226, 0.4)"
+        backdropFilter={"blur(20px) saturate(200%)"}
       >
         <Text
           fontSize="3xl"
           fontFamily="work sans"
           textAlign="center"
-          textColor={"#180a31"}
+          textColor={"#CBD5E0"}
           fontWeight={"bold"}
         >
           Chatter Boxie
         </Text>
       </Box>
       <Box
-        bg={"#4bacfc7a"}
         w={"100%"}
         p={4}
         borderRadius="lg"
         borderWidth="1px"
-        textColor={"#180a31"}
+        borderColor={"rgba(255, 255, 255, 0.125)"}
+        boxShadow={"md"}
+        backgroundColor="rgba(74, 144, 226, 0.4)"
+        backdropFilter={"blur(20px) saturate(200%)"}
+        textColor={"#CBD5E0"}
       >
         <Tabs variant="soft-rounded">
           <TabList mb={"1em"}>
-            <Tab textColor={"#180a31"} w={"50%"}>
+            <Tab textColor={"#CBD5E0"} w={"50%"}>
               Login
             </Tab>
-            <Tab textColor={"#180a31"} w={"50%"}>
+            <Tab textColor={"#CBD5E0"} w={"50%"}>
               Sign Up
             </Tab>
           </TabList>

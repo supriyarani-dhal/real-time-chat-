@@ -130,10 +130,16 @@ const SideDrawer = () => {
         display={"flex"}
         justifyContent={"space-between"}
         alignItems={"center"}
-        bg={"#4bacfcbd"}
+        textColor={"#CBD5E0"}
+        fontWeight={"bold"}
         w={"100%"}
         borderWidth={"5px"}
         p={"5px 10px 5px 10px"}
+        borderRadius="12px"
+        borderColor={"rgba(255, 255, 255, 0.125)"}
+        boxShadow={"md"}
+        backgroundColor="rgba(74, 144, 226, 0.4)"
+        backdropFilter={"blur(20px) saturate(200%)"}
       >
         <Tooltip
           label="Search users to make a chat"
@@ -141,6 +147,7 @@ const SideDrawer = () => {
           placement="bottom-end"
         >
           <Button
+            textColor={"#CBD5E0"}
             variant={"ghost"}
             _hover={{ bg: "blue.400" }}
             ref={btnRef}
@@ -153,7 +160,7 @@ const SideDrawer = () => {
           </Button>
         </Tooltip>
         <Text fontSize={"2xl"} fontFamily={"work sans"}>
-          Chatter Boxie
+          Chatter-Boxie
         </Text>
         <div>
           <Menu>
@@ -164,7 +171,12 @@ const SideDrawer = () => {
               />
               <BellIcon fontSize={"2xl"} m={1} />
             </MenuButton>
-            <MenuList>
+            <MenuList
+              borderColor={"rgba(255, 255, 255, 0.125)"}
+              boxShadow={"md"}
+              backgroundColor="rgba(74, 144, 226, 0.4)"
+              backdropFilter={"blur(25px) saturate(200%)"}
+            >
               {!notification.length && "No new messages"}
               {notification.map((notif) => (
                 <MenuItem
@@ -195,12 +207,17 @@ const SideDrawer = () => {
                 src={user.pic}
               />
             </MenuButton>
-            <MenuList bg={"#90CDF4"}>
+            <MenuList
+              borderColor={"rgba(255, 255, 255, 0.125)"}
+              boxShadow={"md"}
+              backgroundColor="rgba(74, 144, 226, 0.4)"
+              backdropFilter={"blur(25px) saturate(200%)"}
+            >
               <ProfileModal user={user}>
                 <MenuItem
-                  bg="#90CDF4"
+                  backgroundColor="rgba(74, 144, 226, 0.4)"
                   _hover={{
-                    bg: "#7936c9d6",
+                    bg: "#0BC5EA",
                     color: "white",
                   }}
                 >
@@ -209,9 +226,9 @@ const SideDrawer = () => {
               </ProfileModal>
               <MenuDivider></MenuDivider>
               <MenuItem
-                bg="#90CDF4"
+                backgroundColor="rgba(74, 144, 226, 0.4)"
                 _hover={{
-                  bg: "#7936c9d6",
+                  bg: "#0BC5EA",
                   color: "white",
                 }}
                 onClick={logoutHandler}
@@ -229,7 +246,13 @@ const SideDrawer = () => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent bg="#90CDF4">
+        <DrawerContent
+          borderColor={"rgba(255, 255, 255, 0.125)"}
+          boxShadow={"md"}
+          backgroundColor="rgba(155, 155, 155, 0.28)"
+          backdropFilter={"blur(20px) saturate(200%)"}
+          textColor={"#CBD5E0"}
+        >
           <DrawerCloseButton />
           <DrawerHeader borderBottomWidth={"1px"}>Search Users</DrawerHeader>
 
@@ -237,12 +260,12 @@ const SideDrawer = () => {
             <Box display={"flex"} pb={2}>
               <Input
                 placeholder="Search by name or email"
-                textColor={"black"}
+                bg={"RGBA(0, 0, 0, 0.48)"}
                 mr={2}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button colorScheme="teal" onClick={handleSearch}>
+              <Button colorScheme="green" onClick={handleSearch}>
                 Go
               </Button>
             </Box>
