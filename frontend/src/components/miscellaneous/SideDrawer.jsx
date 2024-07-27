@@ -140,6 +140,8 @@ const SideDrawer = () => {
         boxShadow={"md"}
         backgroundColor="rgba(74, 144, 226, 0.4)"
         backdropFilter={"blur(20px) saturate(200%)"}
+        pos={"relative"}
+        zIndex={2}
       >
         <Tooltip
           label="Search users to make a chat"
@@ -180,6 +182,7 @@ const SideDrawer = () => {
               {!notification.length && "No new messages"}
               {notification.map((notif) => (
                 <MenuItem
+                  backgroundColor="rgba(74, 144, 226, 0.4)"
                   key={notif._id}
                   onClick={() => {
                     setSelectedChat(notif.chat);

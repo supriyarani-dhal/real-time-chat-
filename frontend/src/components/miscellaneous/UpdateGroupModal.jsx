@@ -249,6 +249,7 @@ const UpdateGroupModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
             <FormControl display={"flex"}>
               <Input
                 placeholder="Chat Name"
+                bg={"rgba(0,0,0,0.36)"}
                 mb={3}
                 value={groupChatName}
                 onChange={(e) => setGroupChatName(e.target.value)}
@@ -266,6 +267,7 @@ const UpdateGroupModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
             <FormControl display={"flex"}>
               <Input
                 placeholder="Add user to Group"
+                bg={"rgba(0,0,0,0.36)"}
                 mb={1}
                 onChange={(e) => handleSearch(e.target.value)}
               />

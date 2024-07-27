@@ -6,7 +6,6 @@
     background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('./background.jpg');
     background-size: cover;
     background-position: center;
-    color: #180a31;
 }
 
 ::-webkit-scrollbar {
@@ -20,5 +19,9 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+.messages{
+    overflow-y: auto;
 }
 

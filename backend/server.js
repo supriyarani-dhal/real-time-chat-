@@ -35,6 +35,7 @@ const io = new Server(server, {
 });
 
 //handle incoming connections
+//socket.on() is used to listen to the events on both the client and server side
 io.on("connection", (socket) => {
   console.log("connected");
 
@@ -47,7 +48,6 @@ io.on("connection", (socket) => {
   //it's for joining of the user to that room(or chat)
   socket.on("join chat", (room) => {
     socket.join(room);
-    console.log("the user joined the room: " + room);
   });
 
   //for typing functionality inside the room(a chat)
@@ -90,10 +90,10 @@ app.use("/api/message", messageRouter);
 const __dirname = path.resolve(); //the _dirname1 is my current working directory
 if (process.env.NODE_ENV === "production") {
   //establish a path from _dirname1 to the dist folder
-  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+  app.use(express.static(path.join(__dirname, "/frontend/dist"))); //the static method is used to serve the static files
 
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
   });
 } else {
   app.get("/", (req, res) => {

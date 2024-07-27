@@ -176,16 +176,19 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         <>
           <Text
             fontSize={{ base: "28px", md: "30px" }}
-            pb={3}
+            py={3}
             px={2}
             fontFamily={"work sans"}
             display={"flex"}
             w={"100%"}
             justifyContent={{ base: "space-between" }}
             alignItems={"center"}
+            bg={"RGBA(0, 0, 0, 0.36)"}
+            borderRadius={"30px"}
           >
             <IconButton
               display={{ base: "flex", md: "none" }}
+              borderRadius={"50px"}
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
             />
@@ -216,7 +219,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             h={"100%"}
             borderRadius={"lg"}
             overflowY={"hidden"}
-            bg={"#63B3ED"}
           >
             {loading ? (
               <Spinner
@@ -245,10 +247,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <></>
               )}
               <Input
-                variant={"filled"}
                 placeholder="Enter your message"
+                _placeholder={{ color: "gray.300" }}
                 onChange={typingHandler}
                 value={newMessage}
+                bg={"RGBA(0, 0, 0, 0.48)"}
               />
             </FormControl>
           </Box>
@@ -261,7 +264,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           h={"100%"}
         >
           <Text fontSize={"3xl"} pb={3} fontFamily={"work sans"}>
-            Click on a user to start chatting
+            Welcome 👋🏼 {user.name} 😎 . Click on a user to start chatting 💬
           </Text>
         </Box>
       )}
