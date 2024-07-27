@@ -88,18 +88,13 @@ app.use("/api/message", messageRouter);
 //---------deployment-----------------------------
 
 const __dirname = path.resolve(); //the _dirname1 is my current working directory
-if (process.env.NODE_ENV === "production") {
-  //establish a path from _dirname1 to the dist folder
-  app.use(express.static(path.join(__dirname, "/frontend/dist"))); //the static method is used to serve the static files
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
-  });
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is running successfully");
-  });
-}
+//establish a path from _dirname1 to the dist folder
+app.use(express.static(path.join(__dirname, "/frontend/dist"))); //the static method is used to serve the static files
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 //----------deployment------------------------------
 
