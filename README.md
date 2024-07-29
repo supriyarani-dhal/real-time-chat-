@@ -102,7 +102,9 @@ Start the Client
 If you have any feedback, please reach out to us at supriyadhal50@gmail.com
 
 
-## Made by @supriya626
+## Made by 
+
+- [@supriya626](https://github.com/supriya626)
 
 
 
