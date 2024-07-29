@@ -15,7 +15,6 @@ const ScrollableChat = ({ messages }) => {
   const { user } = ChatState();
 
   const lastMessage = useRef();
-  console.log(lastMessage);
   useEffect(() => {
     setTimeout(() => {
       lastMessage.current?.scrollIntoView({ behavior: "smooth" });
@@ -41,12 +40,12 @@ const ScrollableChat = ({ messages }) => {
                 />
               </Tooltip>
             )}
-            <span
+            <div
               style={{
                 backgroundColor: `${
                   m.sender._id === user._id ? "#2C5282" : "#2D3748"
                 }`,
-                borderRadius: "20px",
+                borderRadius: "15px",
                 padding: "5px 15px",
                 maxWidth: "75%",
                 marginLeft: isSameSenderMargin(messages, m, i, user._id),
@@ -54,17 +53,17 @@ const ScrollableChat = ({ messages }) => {
               }}
             >
               {m.content}
-            </span>
-            <span
-              style={{
-                display: "flex",
-                alignItems: "center",
-                fontSize: "small",
-                margin: "0 3px 0 3px",
-              }}
-            >
-              {extractTime(m.createdAt)}
-            </span>
+              <span
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  fontSize: "xx-small",
+                  margin: "0 3px 0 3px",
+                }}
+              >
+                {extractTime(m.createdAt)}
+              </span>
+            </div>
           </div>
         ))}
     </ScrollableFeed>

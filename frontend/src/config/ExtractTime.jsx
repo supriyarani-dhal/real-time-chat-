@@ -4,8 +4,12 @@ export const extractTime = (dateString) => {
   };
 
   const date = new Date(dateString);
+
+  const year = date.getFullYear();
+  const month = padZero(date.getMonth() + 1);
+  const day = padZero(date.getDate());
   const hours = padZero(date.getHours());
   const minutes = padZero(date.getMinutes());
 
-  return `${hours}:${minutes}`;
+  return `${hours}:${minutes} ${day}/${month}/${year}`;
 };

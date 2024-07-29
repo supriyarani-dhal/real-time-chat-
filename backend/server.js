@@ -36,8 +36,11 @@ const io = new Server(server, {
 
 //handle incoming connections
 //socket.on() is used to listen to the events on both the client and server side
+
+let onlineUsers = new Map();
+
 io.on("connection", (socket) => {
-  console.log("connected");
+  console.log("connected", socket.id);
 
   //it creates a room (setup) for the user to enter that room
   socket.on("setup", (userData) => {
@@ -67,11 +70,35 @@ io.on("connection", (socket) => {
     });
   });
 
-  //to disconnect the socket
-  socket.off("setup", () => {
-    console.log("USER DISCONNECTED");
-    socket.leave(userData._id);
+  //tracks the user online or offline
+  socket.on("userOnline", (userId) => {
+    onlineUsers.set(userId, socket.id);
+    io.emit("updateUserStatus", { userId, status: "online" });
   });
+
+  //to disconnect the socket
+  socket.on("disconnect", () => {
+    let disconnectedUserId = null;
+    for (let [userId, socketId] of onlineUsers.entries()) {
+      if (socketId === socket.id) {
+        disconnectedUserId = userId;
+        onlineUsers.delete(userId);
+        break;
+      }
+    }
+    if (disconnectedUserId) {
+      io.emit("updateUserStatus", {
+        userId: disconnectedUserId,
+        status: "offline",
+      });
+    }
+    console.log("A user disconnected", socket.id);
+  });
+
+  // socket.off("setup", () => {
+  //   console.log("USER DISCONNECTED");
+  //   socket.leave(userData._id);
+  // });
 });
 
 dotenv.config();

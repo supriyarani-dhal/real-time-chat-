@@ -15,12 +15,11 @@ import UpdateGroupModal from "../miscellaneous/UpdateGroupModal";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
-import { io } from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../../animation/typing indicator.json";
+import { SocketState } from "../../context/SocketProvider";
 
-const ENDPOINT = "http://localhost:5000";
-var socket, selectedChatCompare;
+var selectedChatCompare;
 
 // eslint-disable-next-line react/prop-types
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -34,6 +33,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
+  const socket = SocketState();
+  const [userStatus, setUserStatus] = useState({});
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -46,12 +48,25 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const toast = useToast();
 
   useEffect(() => {
-    socket = io(ENDPOINT);
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
     socket.on("stop typing", () => setIsTyping(false));
   }, []);
+
+  useEffect(() => {
+    const userId = user._id;
+
+    socket.emit("userOnline", userId);
+    socket.on("updateUserStatus", ({ userId, status }) => {
+      setUserStatus((prevStatus) => ({ ...prevStatus, [userId]: status }));
+    });
+    console.log(userStatus);
+
+    return () => {
+      socket.off("updateUserStatus");
+    };
+  }, [socket]);
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -85,6 +100,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       });
     }
   };
+
+  // console.log(
+  //   onlineUsers.includes(getOnlineUser(user, selectedChat.users)._id)
+  // );
+  // console.log(onlineUsers);
 
   useEffect(() => {
     fetchMessages();
@@ -203,7 +223,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </>
             ) : (
               <>
-                {getSender(user, selectedChat.users)}
+                <span>
+                  <div>{getSender(user, selectedChat.users)}</div>
+                  <div style={{ fontSize: "small" }}>
+                    {userStatus[user._id] === "online"
+                      ? "🔵online..."
+                      : "offline.."}
+                  </div>
+                </span>
                 <ProfileModal
                   user={getSenderDetails(user, selectedChat.users)}
                 />

@@ -1,19 +1,12 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { ChatState } from "../../context/ChatProvider";
-import {
-  Avatar,
-  Box,
-  Button,
-  Divider,
-  Stack,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Button, Divider, Stack, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ChatLoading from "../common/ChatLoading";
 import { getSender } from "../../config/ChatLogics";
 import GroupChatModal from "../miscellaneous/GroupChatModal";
+import { getRandomEmoji } from "../common/Emoji";
 
 // eslint-disable-next-line react/prop-types
 const MyChats = ({ fetchAgain }) => {
@@ -114,12 +107,16 @@ const MyChats = ({ fetchAgain }) => {
                     bg: "#0BC5EA",
                   }}
                   display={"flex"}
+                  justifyContent={"space-between"}
                 >
                   <Text>
                     {!chat.isGroupChat
                       ? getSender(loggedUser, chat.users)
                       : chat.chatName}
                   </Text>
+                  <span style={{ fontSize: "x-larger" }}>
+                    {getRandomEmoji()}
+                  </span>
                 </Box>
                 <Divider />
               </>
