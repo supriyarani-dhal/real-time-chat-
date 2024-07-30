@@ -118,6 +118,14 @@ const SignUp = () => {
       setLoading(false);
 
       history.push("/chats");
+
+      toast({
+        title: "Please refresh the after successfully signed in 😅",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+      });
     } catch (error) {
       toast({
         title: "Something went Wrong!",

@@ -61,7 +61,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     socket.on("updateUserStatus", ({ userId, status }) => {
       setUserStatus((prevStatus) => ({ ...prevStatus, [userId]: status }));
     });
-    console.log(userStatus);
 
     return () => {
       socket.off("updateUserStatus");
