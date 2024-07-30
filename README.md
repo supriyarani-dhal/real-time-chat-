@@ -33,17 +33,9 @@ chatter-boxie link - https://chatter-boxie.onrender.com
 **Database:** Mongodb
 
 
-
-
-
-
-**CHATTER-BOXIE**
-![Logo](https://img.freepik.com/premium-vector/chat-app-logo_579179-2553.jpg) 
-
-
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/supriya626/real-time-chat-/blob/main/chatter-boxie-ss.png)
 
 
 ## Environment Variables
@@ -102,7 +94,9 @@ Start the Client
 If you have any feedback, please reach out to us at supriyadhal50@gmail.com
 
 
-## Made by @supriya626
+## Made by 
+
+- [@supriya626](https://github.com/supriya626)
 
 
 
